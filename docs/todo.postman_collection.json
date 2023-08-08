@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "930c7894-7459-4ee4-bfa4-76fd0f891e68",
+		"name": "todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "976679"
+	},
+	"item": [
+		{
+			"name": "metrics",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/metrics/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"metrics",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos - insert",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "UserUuid",
+						"value": "{{UserUuid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"$random\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/todos/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"todos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos - fetch",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "UserUuid",
+						"value": "{{UserUuid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"limit\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/todos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos - fetch - done",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "UserUuid",
+						"value": "{{UserUuid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"limit\": 100,\n    \"done\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/todos/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"todos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos - delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "UserUuid",
+						"value": "{{UserUuid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uuid\":\"f271e524-7aaa-47eb-9eb1-c6deb265f755\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/todos/delete",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"todos",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos - title",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "UserUuid",
+						"value": "{{UserUuid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uuid\":\"9d70ce78-beea-472d-b20a-4cc7837f94b6\",\n    \"title\" : \"??????\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/todos/title",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"todos",
+						"title"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos - done",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "UserUuid",
+						"value": "{{UserUuid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uuid\":\"fe30e622-10af-473c-9964-22c5670cd02b\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/todos/done",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"todos",
+						"done"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos - undone",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "UserUuid",
+						"value": "{{UserUuid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uuid\":\"fe30e622-10af-473c-9964-22c5670cd02b\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/todos/undone",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"todos",
+						"undone"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

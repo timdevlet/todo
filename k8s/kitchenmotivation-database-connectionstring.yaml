@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  Database__ConnectionString: U2VydmVyPXByb2Qta3RubXZuLW15c3FsLWRvZG8ubXlzcWwuZGF0YWJhc2UuYXp1cmUuY29tOyBEYXRhYmFzZT1raXRjaGVubW90aXZhdGlvbjsgVXNlcj1raXRjaGVubW90aXZhdGlvbl93cml0ZUBwcm9kLWt0bm12bi1teXNxbC1kb2RvOyBQYXNzd29yZD15aE11VUlVcGF0ZExDanNvRGl1b1FoSE1UOyBDb25uZWN0aW9uTGlmZVRpbWU9MTgw
+kind: Secret
+metadata:
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation
+    helm.sh/hook-weight: "-10"
+  creationTimestamp: "2023-07-10T10:29:11Z"
+  labels:
+    app.kubernetes.io/instance: kitchenmotivation
+    app.kubernetes.io/name: kitchenmotivation
+    helm.sh/chart: kitchenmotivation
+  name: kitchenmotivation-database-connectionstring
+  namespace: default
+  ownerReferences:
+  - apiVersion: spv.no/v2beta1
+    blockOwnerDeletion: true
+    controller: false
+    kind: AzureKeyVaultSecret
+    name: kitchenmotivation-database-connectionstring
+    uid: 971f0229-b7b5-4497-9f50-bd73a8584c4e
+  resourceVersion: "1774506447"
+  uid: b9017962-a633-4f16-8d68-8323a12400c0
+type: Opaque

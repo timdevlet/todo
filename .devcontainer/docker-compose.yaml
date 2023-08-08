@@ -1,0 +1,52 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    network_mode: service:postgres
+
+  postgres:
+    image: postgres:15.3
+    restart: always
+    command: postgres -c 'max_connections=200'
+    environment:
+      POSTGRES_USER: todo
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: todos
+    ports:
+    - "5432:5432"
+
+  cassandra:
+    image: cassandra:4.1.2
+    ports:
+      - 9042:9042 
+    environment:
+      - CASSANDRA_CLUSTER_NAME=todos
+
+  grafana:
+    image: grafana/grafana:10.0.3
+    ports:
+      - "3000:3000"
+
+  loki:
+    image: grafana/loki:2.8.0
+    ports:
+      - "3100:3100" #http://localhost:3100/ready
+    volumes:
+      - "./etc/loki:/mnt/config"
+    command: -config.file=/mnt/config/loki-config.yaml
+   
+  promtail:
+    image: grafana/promtail:2.0.0
+    volumes:
+      - "./etc/promtail:/mnt/config"
+      - "/var/lib/docker/containers:/var/lib/docker/containers"
+    command: -config.file=/mnt/config/promtail-config.yaml
+
